@@ -1,26 +1,44 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AuthGuardService } from './auth-guard.service';
-import { LoginComponent } from './authenticate/login/login.component';
-import { CustomerComponent } from './customer/customer.component';
-import { CreateAccountComponent } from './employee/create-account/create-account.component';
-import { CreateCustomerComponent } from './employee/create-customer/create-customer.component';
-import { EmployeeComponent } from './employee/employee.component';
-import { ViewCustomerComponent } from './employee/view-customer/view-customer.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-
+import { RouterModule, Routes } from '@angular/router';
+import { AddOfferComponent } from './add-offer/add-offer.component';
+import { AuthGuard } from './guard/auth.guard';
+import { HomepageComponent } from './homepage/homepage.component';
+import { LoginComponent } from './login/login.component';
+import { MainpageComponent } from './mainpage/mainpage.component';
+import { MyOffersComponent } from './my-offers/my-offers.component';
+import { OfferDetailsComponent } from './offer-details/offer-details.component';
+import { OfferEditComponent } from './offer-edit/offer-edit.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
-  {path: '',component:WelcomeComponent},
-  {path:'home',component:WelcomeComponent},
-  {path: 'loginCustomer',component: LoginComponent},
-  {path: 'loginEmployee',component: LoginComponent},
-  {path: 'createCustomer', component: CreateCustomerComponent, canActivate:[AuthGuardService]},
-  {path: 'viewCustomer/:id', component:ViewCustomerComponent, canActivate:[AuthGuardService]},
-  {path: 'createAccount/:id', component: CreateAccountComponent, canActivate:[AuthGuardService]},
-  {path: 'employeedashboard', component: EmployeeComponent, canActivate:[AuthGuardService]},
-  {path: 'customerdashboard', component: CustomerComponent, canActivate:[AuthGuardService]},
-  {path: '**', redirectTo: ''},
+  //login page
+  { path: 'login', component: LoginComponent },
+
+  //welcome page
+  { path: 'homepage', component: HomepageComponent},
+
+  //homepage once logged in
+  { path: 'main', component: MainpageComponent,canActivate:[AuthGuard]},
+
+  //get offer details for a particular offer
+  { path: 'offerDetails/:id', component: OfferDetailsComponent, canActivate:[AuthGuard]},
+
+  //profile of the user
+  { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
+
+  //all the offers of the user
+  { path: 'myOffers', component: MyOffersComponent,canActivate:[AuthGuard]},
+
+  //edit an offer of the user
+  { path: 'editOffer/:id', component: OfferEditComponent,canActivate:[AuthGuard]},
+
+  //add a new offer canActivate:[AuthGuard]
+  { path: 'addOffer', component: AddOfferComponent,canActivate:[AuthGuard] },
+
+  //redirection route
+  { path: '', redirectTo: "/homepage", pathMatch: "full" },
+
+  
 ];
 
 @NgModule({
