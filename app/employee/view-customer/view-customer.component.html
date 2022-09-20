@@ -1,0 +1,47 @@
+<app-header-work></app-header-work>
+<section>
+    <br>
+    <h2 class="text-center">Customer Details</h2>
+    <br>
+    <div class="container" >
+        <table class="table table-bordered" cellpadding="5">
+            
+            <tr>
+                <th>CUSTOMER ID</th>
+                <th>CUSTOMER NAME</th>
+                <th>DOB</th>
+                <th>PAN</th>
+                <th>ADDRESS</th>
+                <th>ACCOUNTS</th>
+            </tr>
+            <tr>
+                <td>{{custDetails.customerId}}</td>
+                <td>{{custDetails.name}}</td>
+                <td>{{custDetails.dob}}</td>
+                <td>{{custDetails.paNno}}</td>
+                <td>{{custDetails.address}}</td>
+                <td>
+                    <table cellpadding="5">
+                        
+                        <tr>
+                            <th>ACCOUNT ID</th>
+                            <th>CURRENT BALANCE</th>
+                            <th>ACCOUNT TYPE</th>
+                            <th>OWNER NAME</th>
+                        </tr>
+                        <tr *ngFor="let account of accountDetails">
+                            <td>{{account.id}}</td>
+                            <td>{{account.balance}}</td>
+                            <td>{{account.accountType}}</td>
+                            <td>{{custDetails.name}}</td> 
+                        </tr>
+                    </table>
+                </td>  
+        </tr>
+    </table>
+    <br>
+    <div style="text-align: center;">
+        <button class="active btn btn-warning" routerLink="/employeedashboard">Back</button>
+    </div>
+    </div>
+</section>
